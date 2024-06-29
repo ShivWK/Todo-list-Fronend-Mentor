@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             
             task.innerHTML = `<div class="innertask w-fit flex gap-2 items-center">
                                 <button class="w-[22px] absolute checkBtn h-[22px]  rounded-full border-[0.3px] border-gray-400 flex justify-center items-center "><img class="checkImg hidden" src="./images/icon-check.svg" alt=""></button>
-                            <span class="w-full ml-8 taskSpan select-none py-2 border-2 cursor-pointer border-black outline-none ${modeOfTExt} border-none">${inputAdder.value}</span>
+                            <span class="w-full flex items-center ml-8 taskSpan select-none py-2 cursor-pointer border-black outline-none ${modeOfTExt} border-none">${inputAdder.value}</span>
                             </div>
                             <button class="crossBtn md:hidden absolute right-3 md:group-hover:block"><img src="./images/icon-cross.svg" alt=""></button>`;
             inputAdder.value='';
