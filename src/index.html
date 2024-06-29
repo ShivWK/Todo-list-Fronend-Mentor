@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/favicon-32x32.png" type="images/png" sizes="favicon-32x32">
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <!-- <link rel="stylesheet"  href="index.css"> -->
+    <script src="index.js" defer></script>
+    <title>Todo app | FEM</title>
+</head>
+<body data-bg-mode="light" class="bg-[rgb(228,229,241)] md:bg-[url('./images/bg-desktop-light.jpg')] bg-[url('./images/bg-mobile-light.jpg')] bg-contain bg-no-repeat">
+       <div class="lg:w-[39.5%] w-[80%] p-[5px] mt-5 mx-auto">
+        <div class="flex justify-between items-center">
+            <h1 class="tracking-[15px] text-4xl font-bold text-white">TODO</h1>
+            <img class="h-8 cursor-pointer" id="modeBtn" src="./images/icon-moon.svg" alt="">
+        </div>
+         <div id="taskAdder" class="w-full items-center rounded-lg flex bg-white gap-2 py-1 px-3 mt-11">
+            <button id="addBtn" class="w-[22px] absolute  h-[22px] rounded-full ml-1 bg-[rgb(181,97,237,0.8)] flex justify-center items-center active:bg-black active:text-white"><i class="fa-solid fa-plus text-white text-sm"></i></button>
+            <input type="text"  class="inputAdder ml-9 bg-transparent w-full py-2 outline-none border-none" placeholder="Create a new todo">
+         </div>
+
+         <div class="mt-8 overflow-hidden rounded-lg shadow-lg">
+            <div class="list">
+                <ul>
+                    <!-- <li data-status="active" class="tasks overflow-hidden relative group w-full items-center justify-between flex bg-white gap-2 py-1.5 px-4 border-b-[0.3px] border-gray-400">
+                        <div class="innertask w-fit flex gap-2 items-center">
+                            <button class="w-[22px] absolute checkBtn h-[22px]  rounded-full border-[0.3px] border-gray-400 flex justify-center items-center "><img class="checkImg hidden" src="./images/icon-check.svg" alt=""></button>
+                        <span class="w-full ml-8 taskSpan select-none py-2 border-2 cursor-pointer border-black outline-none border-none">Complete DSA bsics playlist</span>
+                        </div>
+                        <button class="crossBtn md:hidden absolute right-3 md:group-hover:block"><img src="./images/icon-cross.svg" alt=""></button>  
+                    </li>  -->
+                </ul>
+            </div>
+            <div id="botton-menu" class=" w-full flex bg-white items-center justify-between p-3">
+                <div class="number flex gap-1">
+                    <span id="numberOfTasks" class="font-semibold text-sm text-gray-500 select-none">0</span>
+                    <span class="font-semibold text-sm text-gray-500 select-none">Items left</span>
+                </div>
+                <div class="gap-2 hidden md:flex">
+                    <button class="allBtn menuBtn clickChange bg-transparent border-none outline-none font-semibold text-gray-500 hover:text-gray-800 text-sm select-none">All</button>
+                    <button class="activeBtn menuBtn clickChange bg-transparent border-none outline-none font-semibold  text-gray-500 hover:text-gray-800 text-sm select-none">Active</button>
+                    <button class="completeBtn menuBtn clickChange bg-transparent border-none outline-none font-semibold  text-gray-500 hover:text-gray-800 text-sm select-none">Completed</button>
+                </div>
+                
+                <button id="clearBtn" class="menuBtn bg-transparent text-sm font-semibold text-gray-500 hover:text-gray-800 active:text-black select-none">Clear Completed</button>
+                
+            </div>
+            
+         </div>
+         <div id="smallMenu" class="flex shadow-lg md:hidden bg-white rounded-md justify-center gap-3 items-center py-3 mt-7">
+            <button  class="allBtn menuBtn clickChange bg-transparent border-none outline-none font-semibold text-gray-500  text-sm ">All</button>
+            <button class="activeBtn menuBtn clickChange bg-transparent border-none outline-none font-semibold  text-gray-500  text-sm">Active</button>
+            <button class="completeBtn menuBtn clickChange bg-transparent border-none outline-none font-semibold  text-gray-500  text-sm">Completed</button>
+        </div>
+         <div class="flex justify-center items-center mt-9">
+            <p class="text-gray-500 font-semibold ">Drag and drop to reorder list</p>
+         </div>
+       </div>
+</body>
+</html>
