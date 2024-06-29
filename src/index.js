@@ -190,7 +190,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     menuBtn[i].classList.remove('hover:text-gray-800');
                     menuBtn[i].classList.add('hover:text-gray-300');
                 }
-    
+                
+                   clearBtn.classList.remove('hover:text-gray-800');
+                   clearBtn.classList.add('hover:text-gray-300');
+
                 inputAdder.classList.add('text-gray-300');
                 inputAdder.classList.remove('text-black');
     
@@ -231,6 +234,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     menuBtn[i].classList.add('hover:text-gray-800');
                 }
     
+                clearBtn.classList.remove('hover:text-gray-300');
+                clearBtn.classList.add('hover:text-gray-800');
+
                 inputAdder.classList.add('text-balck')
                 inputAdder.classList.remove('text-gray-300');
     
