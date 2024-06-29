@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const bottomMenu = document.getElementById('botton-menu');
     const smallMenu = document.getElementById('smallMenu');
     const addBtn = document.getElementById('addBtn');
-    const menuBtn = document.getElementsByClassName('menuBtn');
+    const menuBtn = document.getElementsByClassName('menuBtnA');
     const clickChange = document.getElementsByClassName('clickChange');
     const inputAdder = document.querySelector('.inputAdder');
     const numberOfTasks = document.getElementById('numberOfTasks');
@@ -266,4 +266,5 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 body.setAttribute('data-bg-mode', 'light');          
         }
     }
+    //https://todo-list-fronend-mentor.vercel.app/
 })
