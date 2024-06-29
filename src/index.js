@@ -85,16 +85,27 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     addBtn.addEventListener('click', () => {
 
+        let modeOfList, modeOfTExt ;
+        if(mode){
+            if(mode == 'dark'){
+                modeOfList='bg-[rgb(37,39,60)]';
+                modeOfTExt='text-[rgb(202,205,232)]'
+            }else{
+                modeOfList='bg-white';
+                modeOfTExt='text-black';
+            }           
+        }
+
         if (inputAdder.value === '') {
             alert('Please give a task')
         } else {
             const task = document.createElement('li');
             task.setAttribute('data-status', 'active');
-            task.className = "tasks overflow-hidden relative group w-full items-center justify-between flex bg-white gap-2 py-1.5 px-4 border-b-[0.3px] border-gray-400";
+            task.className = `tasks overflow-hidden relative group w-full items-center justify-between flex ${modeOfList} gap-2 py-1.5 px-4 border-b-[0.3px] border-gray-400`;
             
             task.innerHTML = `<div class="innertask w-fit flex gap-2 items-center">
                                 <button class="w-[22px] absolute checkBtn h-[22px]  rounded-full border-[0.3px] border-gray-400 flex justify-center items-center "><img class="checkImg hidden" src="./images/icon-check.svg" alt=""></button>
-                            <span class="w-full ml-8 taskSpan select-none py-2 border-2 cursor-pointer border-black outline-none border-none">${inputAdder.value}</span>
+                            <span class="w-full ml-8 taskSpan select-none py-2 border-2 cursor-pointer border-black outline-none ${modeOfTExt} border-none">${inputAdder.value}</span>
                             </div>
                             <button class="crossBtn md:hidden absolute right-3 md:group-hover:block"><img src="./images/icon-cross.svg" alt=""></button>`;
             inputAdder.value='';
@@ -178,6 +189,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     modeBtn.addEventListener('click', modeChange)
 
+    var mode = 'light';
     function modeChange(){
             if (modeBtn.getAttribute('src') === './images/icon-moon.svg') {
                 modeBtn.setAttribute('src', './images/icon-sun.svg')
@@ -227,7 +239,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 body.classList.add("md:bg-[url('./images/bg-desktop-dark.jpg')]");
                 body.classList.add("bg-[url('./images/bg-mobile-dark.jpg')]");
                 body.setAttribute('data-bg-mode', 'dark');   
-    
+                mode='dark';
             } else {
                 for (let i = 0; i < menuBtn.length; i++) {
                     menuBtn[i].classList.remove('hover:text-gray-300');
@@ -269,7 +281,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 body.classList.add('bg-[rgb(228,229,241)]');
                 body.classList.add("md:bg-[url('./images/bg-desktop-light.jpg')]");
                 body.classList.add("bg-[url('./images/bg-mobile-light.jpg')]");
-                body.setAttribute('data-bg-mode', 'light');          
+                body.setAttribute('data-bg-mode', 'light');     
+                mode='light';    
         }
     }
     //https://todo-list-fronend-mentor.vercel.app/
