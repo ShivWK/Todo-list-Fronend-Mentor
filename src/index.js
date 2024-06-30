@@ -64,6 +64,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const inputAdder = document.querySelector('.inputAdder');
     const numberOfTasks = document.getElementById('numberOfTasks');
 
+    inputAdder.addEventListener('keydown', (e)=>{
+        if(e.key == 'Enter'){
+            addBtn.click();
+            // click() will trigger the click event
+        }
+    })
+
     if(tasksArray.length != 0){
         tasksNumber();
     } 
@@ -153,24 +160,52 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     task.setAttribute('data-status', 'active');
                 }
                 
+                
+
                 tasksNumber();
             })
             tasksNumber();
-            //for appending element(s) use tamplate litterals but create the container element by js properly w/o litterals
-            
+            task.addEventListener('dragstart', ()=>{
+                // console.log('dragstart');
+                task.classList.add('dragged')
+            })
+            task.addEventListener('dragend', ()=>{
+                // console.log('dragend');
+                task.classList.remove('dragged')})
+            //for appending element(s) use tamplate litterals but create the container element by js properly w/o litterals           
         }
     })
+    let draggedItem, nextSibling;
+    list.addEventListener('dragover', (e)=>{
+        // console.log('dragover-starts')
+        e.preventDefault();
+        draggedItem = list.querySelector('.dragged');
+
+        const siblings = [...list.querySelectorAll('.tasks:not(.dragged)')];
+
+        nextSibling = siblings.find((sib)=>{
+            return e.clientY <= sib.offsetTop + sib.offsetHeight /2;
+        })
+        // This line uses the find method to identify the first sibling in the siblings array where the current mouse Y position (e.clientY) is less than or equal to the midpoint (vertically) of the sibling. 
+    })
+    list.addEventListener('drop', ()=>{
+        list.insertBefore(draggedItem, nextSibling);
+        // If the current mouse position is above this midpoint, the draggingItem should be placed before this sibling.
+        updateTaskArray();
+    })
+
+    function updateTaskArray(){
+        tasksArray = [...list.getElementsByClassName('tasks')]
+    }
 
     function tasksNumber(){    
-        if(lis){
             const howManyTasks = tasksArray.filter((li)=>{
                 return li.getAttribute('data-status') === 'active';
-
             })
             const total = howManyTasks.length;
             numberOfTasks.innerText = total;
-        }
     }
+    
 
     let selectedBtn = null;
     for (let btns of clickChange) {
@@ -191,6 +226,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     modeBtn.addEventListener('click', modeChange)
 
     var mode = 'light';
+    let isLargeScreen;
     function modeChange(){
             if (modeBtn.getAttribute('src') === './images/icon-moon.svg') {
                 modeBtn.setAttribute('src', './images/icon-sun.svg')
@@ -204,8 +240,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     menuBtn[i].classList.add('hover:text-gray-300');
                 }
                 
-                   clearBtn.classList.remove('hover:text-gray-800');
-                   clearBtn.classList.add('hover:text-gray-300');
+                isLargeScreen = window.matchMedia("(min-width:1024px)").matches;
+                // window.matchMedia is used to create a MediaQueryList object, and the .matches property returns a boolean indicating if the document matches the media query string.
+
+                if(isLargeScreen){
+                    clearBtn.classList.remove('hover:text-gray-800');
+                    clearBtn.classList.add('hover:text-gray-300');
+                }
+                
 
                 inputAdder.classList.add('text-gray-300');
                 inputAdder.classList.remove('text-black');
@@ -247,9 +289,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     menuBtn[i].classList.add('hover:text-gray-800');
                 }
     
-                clearBtn.classList.remove('hover:text-gray-300');
-                clearBtn.classList.add('hover:text-gray-800');
-
+                if(isLargeScreen){
+                    clearBtn.classList.remove('hover:text-gray-300');
+                    clearBtn.classList.add('hover:text-gray-800');
+                }
+                
                 inputAdder.classList.add('text-balck')
                 inputAdder.classList.remove('text-gray-300');
     
