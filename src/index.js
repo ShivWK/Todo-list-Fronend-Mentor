@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     } 
     //dont use ternery operator to call a function use it to assign value on a condition or perfporm a simple operation
     
-    //beleow is wronf=]g because cross buttons dont exist in initilat load the are dynamically created so add event to them only after the are created or simiply add event when you create them. dynamically jo bhi print ho raha hai uske upar koi event tabhi lagega jab wo banega pehele se nahi
+    //beleow is wrong because cross buttons dont exist in initilat load the are dynamically created so add event to them only after the are created or simiply add event when you create them. dynamically jo bhi print ho raha hai uske upar koi event tabhi lagega jab wo banega pehele se nahi
     // crossBtn.forEach((btn)=>{
     //     btn.addEventListener('click', (e)=>{
     //         e.target.parentElement.remove();
@@ -101,13 +101,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
         } else {
             const task = document.createElement('li');
             task.setAttribute('data-status', 'active');
-            task.className = `tasks overflow-hidden relative group w-full items-center justify-between flex ${modeOfList} gap-2 py-1.5 px-4 border-b-[0.3px] border-gray-400`;
+            task.setAttribute('draggable', 'true');
+            task.className = `tasks overflow-hidden relative group w-full items-center justify-between flex ${modeOfList} gap-2 py-1.5 px-3 border-b-[0.3px] border-gray-400`;
             
             task.innerHTML = `<div class="innertask w-fit flex gap-2 items-center">
                                 <button class="w-[22px] absolute checkBtn h-[22px]  rounded-full border-[0.3px] border-gray-400 flex justify-center items-center "><img class="checkImg hidden" src="./images/icon-check.svg" alt=""></button>
-                            <span class="w-full flex items-center ml-8 taskSpan select-none py-2 cursor-pointer border-black outline-none ${modeOfTExt} border-none">${inputAdder.value}</span>
+                            <span class="w-full flex text-wrap break-all items-center ml-8 mr-4 taskSpan select-none py-2 cursor-pointer border-black outline-none ${modeOfTExt} border-none">${inputAdder.value}</span>
                             </div>
-                            <button class="crossBtn md:hidden absolute right-3 md:group-hover:block"><img src="./images/icon-cross.svg" alt=""></button>`;
+                            <button class="crossBtn md:hidden absolute pl-2  right-2 md:group-hover:block"><img src="./images/icon-cross.svg" alt=""></button>`;
             inputAdder.value='';
             list.append(task);
             tasksArray.push(task);
