@@ -272,15 +272,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if (body.getAttribute('data-bg-mode') === 'light') {
     
                 for (let i = 0; i < menuBtn.length; i++) {
-                    menuBtn[i].classList.remove('hover:text-gray-800');
+                    menuBtn[i].classList.remove('hover:text-gray-900');
                     menuBtn[i].classList.add('hover:text-gray-300');
                 }
                 
-                isLargeScreen = window.matchMedia("(min-width:1024px)").matches;
-                if(isLargeScreen){
-                    clearBtn.classList.remove('hover:text-gray-800');
-                    clearBtn.classList.add('hover:text-gray-300');
-                }
+                // isLargeScreen = window.matchMedia("(min-width:1024px)").matches;
+                // if(isLargeScreen){
+                    clearBtn.classList.remove('md:hover:text-gray-900');
+                    clearBtn.classList.add('md:hover:text-gray-300');
+                // }
                 
 
                 inputAdder.classList.add('text-gray-300');
@@ -320,13 +320,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             } else {
                 for (let i = 0; i < menuBtn.length; i++) {
                     menuBtn[i].classList.remove('hover:text-gray-300');
-                    menuBtn[i].classList.add('hover:text-gray-800');
+                    menuBtn[i].classList.add('hover:text-gray-900');
                 }
     
-                if(isLargeScreen){
-                    clearBtn.classList.remove('hover:text-gray-300');
-                    clearBtn.classList.add('hover:text-gray-800');
-                }
+                // if(isLargeScreen){
+                    clearBtn.classList.remove('md:hover:text-gray-300');
+                    clearBtn.classList.add('md:hover:text-gray-900');
+                // }
                 
                 inputAdder.classList.add('text-balck')
                 inputAdder.classList.remove('text-gray-300');
