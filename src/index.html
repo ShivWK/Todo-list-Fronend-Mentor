@@ -8,9 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <script src="index.js" defer></script>
     <title>Todo app | FEM</title>
+
+    <style>
+        .main{
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%);
+        }
+    </style>
 </head>
 <body data-bg-mode="light" class="bg-[rgb(228,229,241)] md:bg-[url('./images/bg-desktop-light.jpg')] bg-[url('./images/bg-mobile-light.jpg')] bg-cover bg-no-repeat">
-       <div class="lg:w-[40%] w-[83%] pt-[5px] mt-9 mx-auto">
+       <div class="lg:w-[40%] w-[83%] pt-[5px] mx-auto main z-50 border-black">
         <div class="flex justify-between items-center">
             <h1 class="tracking-[15px] text-4xl font-bold text-white">TODO</h1>
             <img class="h-8 cursor-pointer" id="modeBtn" src="./images/icon-moon.svg" alt="">
@@ -45,9 +54,10 @@
             <button class="activeBtn menuBtn clickChange bg-transparent border-none outline-none font-semibold  text-gray-500  text-sm">Active</button>
             <button class="completeBtn menuBtn clickChange bg-transparent border-none outline-none font-semibold  text-gray-500  text-sm">Completed</button>
         </div>
-         <div class="flex justify-center items-center mt-9">
-            <p class="text-gray-500 font-semibold select-none">Drag and drop to reorder list</p>
-         </div>
+        <div class="flex justify-center items-center mt-11">
+        <p class="text-gray-500 font-semibold select-none">Drag and drop to reorder list</p>
+     </div>
        </div>
+       
 </body>
 </html>
