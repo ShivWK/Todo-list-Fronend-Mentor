@@ -276,11 +276,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     menuBtn[i].classList.add('hover:text-gray-300');
                 }
                 
-                // isLargeScreen = window.matchMedia("(min-width:1024px)").matches;
-                // if(isLargeScreen){
-                    clearBtn.classList.remove('md:hover:text-gray-900');
-                    clearBtn.classList.add('md:hover:text-gray-300');
-                // }
+                
+                clearBtn.classList.remove('md:hover:text-gray-900');
+                clearBtn.classList.add('md:hover:text-gray-300');
                 
 
                 inputAdder.classList.add('text-gray-300');
@@ -323,10 +321,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     menuBtn[i].classList.add('hover:text-gray-900');
                 }
     
-                // if(isLargeScreen){
-                    clearBtn.classList.remove('md:hover:text-gray-300');
-                    clearBtn.classList.add('md:hover:text-gray-900');
-                // }
+                clearBtn.classList.remove('md:hover:text-gray-300');
+                clearBtn.classList.add('md:hover:text-gray-900');    
                 
                 inputAdder.classList.add('text-balck')
                 inputAdder.classList.remove('text-gray-300');
