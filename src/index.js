@@ -194,6 +194,46 @@ document.addEventListener('DOMContentLoaded', ()=>{
         updateTaskArray();
     })
 
+    list.addEventListener('touchstart', (event) => {
+        const draggedItem = event.target.closest('.tasks');
+
+        if (!draggedItem) return;
+
+        draggedItem.classList.add('dragged');
+    });
+
+    list.addEventListener('touchmove', (event) => {
+        event.preventDefault();
+        const draggedItem = list.querySelector('.dragged');
+        
+        if (!draggedItem) return;
+
+        const touch = event.touches[0];
+        const targetItem = document.elementFromPoint(touch.clientX, touch.clientY).closest('.tasks');
+
+        if (!targetItem) return;
+
+        const targetRect = targetItem.getBoundingClientRect();
+        const offsetY = touch.clientY - targetRect.top;
+        const offsetHeight = targetRect.height / 2;
+
+        if (offsetY > offsetHeight) {
+            list.insertBefore(draggedItem, targetItem.nextElementSibling);
+        } else {
+            list.insertBefore(draggedItem, targetItem);
+        }
+    });
+
+    list.addEventListener('touchend', (event) => {
+        const draggedItem = list.querySelector('.dragged');
+        
+        if (!draggedItem) return;
+
+        draggedItem.classList.remove('dragged');
+        updateTaskArray();
+    });
+
+
     function updateTaskArray(){
         tasksArray = [...list.getElementsByClassName('tasks')]
     }
