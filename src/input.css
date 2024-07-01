@@ -2,10 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background: rgb(36, 80, 224);
-}
 
-.dragged{
-    @apply opacity-80 z-50 absolute;
-}

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const completeBtn = document.getElementsByClassName('completeBtn');
     const list = document.getElementsByTagName('ul')[0];
 
+    //Adding functionality for All button
     for(let btn1 of allBtn){
         btn1.addEventListener('click', ()=>{    
             if(lis){
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }) 
     }
     
+    //Adding functionality for Active button
     for(let btn2 of activeBtn){
         btn2.addEventListener('click', ()=>{
             if(lis){
@@ -27,6 +29,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         })
     }
 
+    //Adding functionality for complete button
     for(let btn3 of completeBtn){
         btn3.addEventListener('click', ()=>{
             if(lis){
@@ -40,11 +43,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
         })
     }
     
-
+    //Array to store todos
     let tasksArray = [];
 
-// In JavaScript, variable declarations using var are hoisted to the top of their scope, but the same does not apply to let and const. The var keyword will hoist the declaration but not the initialization, while let and const will not hoist in a way that allows them to be accessed before their declaration.
-
+    //Adding functionality for Clear button
     clearBtn.addEventListener('click', ()=>{
         list.innerHTML='';
         tasksArray.length = 0;
@@ -54,7 +56,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const body = document.querySelector('body');
     const modeBtn = document.getElementById('modeBtn');
     const lis = document.getElementsByClassName('tasks');
-    //as new lis will get added in dom dynamicaly then it will get updated means lis will also have newly added <li>s. but if here we use querySelectorAll then it wont be updated as it is not live.
     const taskAdder = document.getElementById('taskAdder');
     const bottomMenu = document.getElementById('botton-menu');
     const smallMenu = document.getElementById('smallMenu');
@@ -64,32 +65,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const inputAdder = document.querySelector('.inputAdder');
     const numberOfTasks = document.getElementById('numberOfTasks');
 
+    //adding feature to click add button on enter key press
     inputAdder.addEventListener('keydown', (e)=>{
         if(e.key == 'Enter'){
             addBtn.click();
-            // click() will trigger the click event
         }
     })
 
+    //call function to count the number of active todos
     if(tasksArray.length != 0){
         tasksNumber();
     } 
-    //dont use ternery operator to call a function use it to assign value on a condition or perfporm a simple operation
-    
-    //beleow is wrong because cross buttons dont exist in initilat load the are dynamically created so add event to them only after the are created or simiply add event when you create them. dynamically jo bhi print ho raha hai uske upar koi event tabhi lagega jab wo banega pehele se nahi
-    // crossBtn.forEach((btn)=>{
-    //     btn.addEventListener('click', (e)=>{
-    //         e.target.parentElement.remove();
-    //         //learn about parentElement
-    //     })
-    // });
-    // crossBtn.addEventListener('click', (e)=>{
-    //     e.target.parentElement.remove();
-    //     //learn about parentElement
-    // })\
 
-    
-
+    //Adding todo to DOM and Array
     addBtn.addEventListener('click', () => {
 
         let modeOfList, modeOfTExt ;
@@ -103,9 +91,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }           
         }
 
+        //if user haven't given any todo and clicked add button
         if (inputAdder.value === '') {
             alert('Please give a task')
         } else {
+
+            //creating li element , adding attributes to it, adding content to it
             const task = document.createElement('li');
             task.setAttribute('data-status', 'active');
             task.setAttribute('draggable', 'true');
@@ -118,20 +109,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
                             <button class="crossBtn md:hidden absolute pl-2  right-2 md:group-hover:block"><img src="./images/icon-cross.svg" alt=""></button>`;
             inputAdder.value='';
             list.append(task);
+
+            //adding task to the array
             tasksArray.push(task);
 
+            //adding feacture to cross button to remove the todo on click
             task.querySelector('.crossBtn').addEventListener('click', ()=>{
-                let indexoftask = tasksArray.indexOf(task); //wahi task hai jispe click hua hai
+                let indexoftask = tasksArray.indexOf(task);
                 
                 if(indexoftask > -1){
                     tasksArray.splice(indexoftask, 1);
                 }
                 task.remove();
-                tasksNumber();
-                //learn about parentElement, remove()
-                
+                tasksNumber();              
             })
 
+            //Adding styl to the todo when check button is clicked
             task.querySelector('.checkBtn').addEventListener('click', () => {
                 task.querySelector('.checkImg').classList.toggle('hidden');
                 task.querySelector('.checkBtn').classList.toggle('bg-custom-gradient');
@@ -147,6 +140,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 tasksNumber();
             })
 
+            //Adding styl to the todo when task(written text inside todo) is clicked
             task.querySelector('.taskSpan').addEventListener('click', () => {
                 task.querySelector('.checkImg').classList.toggle('hidden');
                 task.querySelector('.checkBtn').classList.toggle('bg-custom-gradient');
@@ -160,24 +154,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     task.setAttribute('data-status', 'active');
                 }
                 
-                
-
+                //After marking a task completed counting active tasks
                 tasksNumber();
             })
+
+            //After adding a new task counting active tasks
             tasksNumber();
             task.addEventListener('dragstart', ()=>{
-                // console.log('dragstart');
                 task.classList.add('dragged')
             })
             task.addEventListener('dragend', ()=>{
-                // console.log('dragend');
-                task.classList.remove('dragged')})
-            //for appending element(s) use tamplate litterals but create the container element by js properly w/o litterals           
+                task.classList.remove('dragged')})         
         }
     })
+
+    //Adding drag and drop feature for desktop
     let draggedItem, nextSibling;
     list.addEventListener('dragover', (e)=>{
-        // console.log('dragover-starts')
         e.preventDefault();
         draggedItem = list.querySelector('.dragged');
 
@@ -186,14 +179,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
         nextSibling = siblings.find((sib)=>{
             return e.clientY <= sib.offsetTop + sib.offsetHeight /2;
         })
-        // This line uses the find method to identify the first sibling in the siblings array where the current mouse Y position (e.clientY) is less than or equal to the midpoint (vertically) of the sibling. 
     })
     list.addEventListener('drop', ()=>{
         list.insertBefore(draggedItem, nextSibling);
-        // If the current mouse position is above this midpoint, the draggingItem should be placed before this sibling.
+
+        //Updating array so that items in it get sync with items in ul(list) on DOM
         updateTaskArray();
     })
 
+    //Adding drag and drop feature on touch events for mobile 
     list.addEventListener('touchstart', (event) => {
         const draggedItem = event.target.closest('.tasks');
 
@@ -233,10 +227,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
         updateTaskArray();
     });
 
-
+    //Synchronizing array with ul in DOM
     function updateTaskArray(){
         tasksArray = [...list.getElementsByClassName('tasks')]
     }
+
 
     function tasksNumber(){    
             const howManyTasks = tasksArray.filter((li)=>{
@@ -246,7 +241,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             numberOfTasks.innerText = total;
     }
     
-
+    //Adding blue color to the select/click button in All, Active, Complete
     let selectedBtn = null;
     for (let btns of clickChange) {
         btns.addEventListener('click', () => {
@@ -263,6 +258,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         })
     }
 
+    //Light and Dark mode on mode button click
     modeBtn.addEventListener('click', modeChange)
 
     var mode = 'light';
@@ -281,8 +277,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 }
                 
                 isLargeScreen = window.matchMedia("(min-width:1024px)").matches;
-                // window.matchMedia is used to create a MediaQueryList object, and the .matches property returns a boolean indicating if the document matches the media query string.
-
                 if(isLargeScreen){
                     clearBtn.classList.remove('hover:text-gray-800');
                     clearBtn.classList.add('hover:text-gray-300');
@@ -370,5 +364,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 mode='light';    
         }
     }
-    //https://todo-list-fronend-mentor.vercel.app/
 })
